@@ -153,6 +153,7 @@ function runAnalysis(err, docs, callback) {
 			if(play.quarter > 4) nbOvertimes = play.quarter - 4;
 		});
 
+		// Adding information to result object
 		gameScoreElements.maxTeamPoints = Math.max(game.playbyplay[game.playbyplay.length-1].awayTeamScore, game.playbyplay[game.playbyplay.length-1].homeTeamScore);
 		gameScoreElements.leadChanges = nbLeadChanges;
 		gameScoreElements.ties = nbTies;

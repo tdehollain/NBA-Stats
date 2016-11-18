@@ -177,7 +177,7 @@ function runAnalysis(err, docs, callback) {
 
 		function analyseBox(player) {
 			if(player.points >= 40) pointsPerf.push({player: player.player, points: player.points});
-			if(player.threePts.made >= 8) threePtsPerf.push({player: player.player, threePts: player.threePts});
+			if(player.threePts.made >= 8) threePtsPerf.push({player: player.player, threePts: player.threePts.made});
 			if(player.rebounds >= 15) reboundsPerf.push({player: player.player, rebounds: player.rebounds});
 			if(player.assists >= 15) assistsPerf.push({player: player.player, assists: player.assists});
 			if(player.steals >= 5) stealsPerf.push({player: player.player, steals: player.steals});

@@ -94,7 +94,7 @@ let PbpModel = mongoose.model('pbp', pbpSchema);
 
 const season = '2016';
 const date = process.argv[2];
-const mainURL = 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date;
+const mainURL = date=== '' ? 'http://msnbchosted.stats.com/nba/scoreboard.asp' : 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date;
 const host = 'http://msnbchosted.stats.com';
 // const userAgents = [
 // 	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17',

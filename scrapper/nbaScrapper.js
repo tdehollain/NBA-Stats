@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost:27017/nba', (err) => {
 });
 
 let pbpSchema = new mongoose.Schema({
+	gameId: Number,
 	season: Number,
 	date: String,
 	homeTeam: String,
@@ -296,8 +297,10 @@ function getPlayByPlay(url, callback) {
 
 
 function writeGameToDB(gameData, gameURL, callback) {
+	
 	// Build data model
 	let pbp = new PbpModel({
+		gameId: gameURL.slice(gameURL.indexOf('?gamecode=') + 10, gameURL.indexOf('?gamecode=') + 20),
 		season: season,
 		date: date,
 		awayTeam: gameData.awayTeam,

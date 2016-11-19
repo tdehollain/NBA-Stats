@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/nba', (err) => {
 });
 
 let pbpSchema = new mongoose.Schema({
+	gameId: Number,
 	season: Number,
 	date: String,
 	homeTeam: String,

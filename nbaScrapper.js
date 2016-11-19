@@ -87,14 +87,24 @@ let pbpSchema = new mongoose.Schema({
 
 let PbpModel = mongoose.model('pbp', pbpSchema);
 
+Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
 
 /****************************
 *****   HTTP requests   *****
 ****************************/
 
 const season = '2016';
-const date = process.argv[2];
-const mainURL = date ? 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date : 'http://msnbchosted.stats.com/nba/scoreboard.asp';
+let date = process.argv[2];
+if(!date) {
+	let today = new Date();
+	let yesterday = today.addDays(-1);
+	date = yesterday.getFullYear().toString() + (yesterday.getMonth()+1).toString() + yesterday.getDate().toString();
+}
+const mainURL = 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date;
 const host = 'http://msnbchosted.stats.com';
 // const userAgents = [
 // 	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17',

@@ -121,9 +121,9 @@ myOwnGetRequest(mainURL, (err, rawData) => {
 			if(err2) {
 				console.log("Error getting data for game URL: " + gameURLs.pbp);
 			} else {
-				getBox(gameURLs.box, (err2, gameBox) => {
+				getBox(gameURLs.box, (err3, gameBox) => {
 					gameData.box = gameBox;
-					writeGameToDB(gameData, gameURLs.pbp, (err2) => {
+					writeGameToDB(gameData, gameURLs.pbp, (err3) => {
 						i++;
 						if(err3) console.log(err3); else console.log('Game saved to DB: ' + i + ': ' + gameURLs.pbp);
 						if(i===gameList.length) mongoose.connection.close();

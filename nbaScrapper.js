@@ -94,7 +94,7 @@ let PbpModel = mongoose.model('pbp', pbpSchema);
 
 const season = '2016';
 const date = process.argv[2];
-const mainURL = date=== '' ? 'http://msnbchosted.stats.com/nba/scoreboard.asp' : 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date;
+const mainURL = date ? 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date : 'http://msnbchosted.stats.com/nba/scoreboard.asp';
 const host = 'http://msnbchosted.stats.com';
 // const userAgents = [
 // 	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17',
@@ -107,20 +107,25 @@ const host = 'http://msnbchosted.stats.com';
 // 	'Content-Type': 'application/x-www-form-urlencoded'};
 
 
-myOwnGetRequest(mainURL, (rawData) => {
+myOwnGetRequest(mainURL, (err, rawData) => {
+	if(err) {
+		console.log(err.message);
+		mongoose.connection.close();
+		return;
+	}
 	const gameList = getGames(rawData);
 	let i=0;
 	gameList.forEach(gameURLs => {
-		getPlayByPlay(gameURLs.pbp, (err, gameData) => {
+		getPlayByPlay(gameURLs.pbp, (err2, gameData) => {
 			console.log('Getting PBP for: ' + gameURLs.pbp);
-			if(err) {
+			if(err2) {
 				console.log("Error getting data for game URL: " + gameURLs.pbp);
 			} else {
-				getBox(gameURLs.box, (err, gameBox) => {
+				getBox(gameURLs.box, (err2, gameBox) => {
 					gameData.box = gameBox;
-					writeGameToDB(gameData, gameURLs.pbp, (err) => {
+					writeGameToDB(gameData, gameURLs.pbp, (err2) => {
 						i++;
-						if(err) console.log(err); else console.log('Game saved to DB: ' + i + ': ' + gameURLs.pbp);
+						if(err3) console.log(err3); else console.log('Game saved to DB: ' + i + ': ' + gameURLs.pbp);
 						if(i===gameList.length) mongoose.connection.close();
 					});
 				});
@@ -133,9 +138,9 @@ myOwnGetRequest(mainURL, (rawData) => {
 function myOwnGetRequest(url, callback) {
 	http.get(url, (res) => {
 		if(res.statusCode !== 200) {
-			const error = new Error('Request failed - Status Code: ' + res.statusCode);
-			console.log(error.message);
+			const error = new Error("Error: failed to load URL '" + url + "'- Status Code: " + res.statusCode);
 			res.resume();
+			callback(error);
 			return;
 		}
 

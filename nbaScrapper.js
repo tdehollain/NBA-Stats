@@ -168,7 +168,7 @@ function getGames(content) {
 }
 
 function getBox(url, callback) {
-	myOwnGetRequest(url, (content) => {
+	myOwnGetRequest(url, (err, content) => {
 		const $ = cheerio.load(content);
 		let data= {
 			awayTeam: [],
@@ -224,7 +224,7 @@ function getBox(url, callback) {
 }
 
 function getPlayByPlay(url, callback) {
-	myOwnGetRequest(url, (content) => {
+	myOwnGetRequest(url, (err, content) => {
 		const $ = cheerio.load(content);
 		let data = {
 			awayTeam: '',

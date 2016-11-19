@@ -147,7 +147,7 @@ function myOwnGetRequest(url, callback) {
 		res.setEncoding('utf-8');
 		let rawData = '';
 		res.on('data', (chunck) => rawData += chunck);
-		res.on('end', () => {callback(rawData);});
+		res.on('end', () => {callback(null, rawData);});
 	});
 }
 

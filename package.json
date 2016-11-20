@@ -2,6 +2,7 @@
 	"name": "nbaStats",
 	"main": "server.js",
 	"dependencies": {
-		"express":  "4.14.0"
+		"express":  "4.14.0",
+ 	 	"mongoose": "4.6.6"
 	}
 }

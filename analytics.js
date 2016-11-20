@@ -1,5 +1,3 @@
-
-
 exports.calcutateGameScore = function(game) {
 	// Count ties and lead changes, overtimes
 	let gameScore = 0;
@@ -81,7 +79,7 @@ exports.calcutateGameScore = function(game) {
 	game.box.homeTeam.forEach(analyseBox);
 
 	function analyseBox(player) {
-		if(player.points >= 40) pointsPerf.push({player: player.player, points: player.points});
+		if(player.points >= 35) pointsPerf.push({player: player.player, points: player.points});
 		if(player.threePts.made >= 8) threePtsPerf.push({player: player.player, threePts: player.threePts.made});
 		if(player.rebounds >= 15) reboundsPerf.push({player: player.player, rebounds: player.rebounds});
 		if(player.assists >= 15) assistsPerf.push({player: player.player, assists: player.assists});

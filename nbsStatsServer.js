@@ -118,7 +118,7 @@ router.get('/rating/:gameId', (req, res) => {
 		output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';
 		output += '<li>Individual performance - Assists: ' + JSON.stringify(res.gameScoreElements.assistsPerf) + '</li>';
 		output += '<li>Individual performance - Steals: ' + JSON.stringify(res.gameScoreElements.stealsPerf) + '</li>';
-		output += '<li>Individual performance - Blocks: ' + JSON.stringify(res.gameScoreElements.blocksPerf) + '</li></ul>';
+		output += '<li>Individual performance - Blocks: ' + JSON.stringify(res.gameScoreElements.blocksPerf) + '</li>';
 		output += '<li>Individual performance - Triple Doubles: ' + JSON.stringify(res.gameScoreElements.tripleDoublePerf) + '</li></ul>';
 		res.send(output);
 	} else {

@@ -77,7 +77,9 @@ router.param('gameId', (req, res, next, gameId) => {
 		PbpModel.find({ gameId: gameId }, (err, docs) => {
 			if(docs.length === 1) {
 				// Found the game
-				res.gameScoreData = analytics.calcutateGameScore(docs[0]);
+				res.gameScore = analytics.calcutateGameScore(docs[0]).gameScore;
+				res.indivScore = analytics.calcutateGameScore(docs[0]).indivScore;
+				res.gameScoreElements = analytics.calcutateGameScore(docs[0]).gameScoreElements;
 				req.validated = true;
 				next();
 			} else if(docs.length > 1) {
@@ -98,21 +100,26 @@ router.param('gameId', (req, res, next, gameId) => {
 
 router.get('/rating/:gameId', (req, res) => {
 	if(req.validated) {
-		let output = '<h2>Getting rating for game : ' + req.gameId + '</h2><ul>';
-		output += '<li>Top team score: ' + res.gameScoreData.maxTeamPoints + '</li>';
-		output += '<li>Lead Changes: ' + res.gameScoreData.leadChanges + '</li>';
-		output += '<li>Late Lead Changes: ' + res.gameScoreData.lateLeadChanges + '</li>';
-		output += '<li>Ties: ' + res.gameScoreData.ties + '</li>';
-		output += '<li>Overtimes: ' + res.gameScoreData.nbOvertimes + '</li>';
-		output += '<li>Buzzer beater (to tie the game): ' + res.gameScoreData.buzzerBeaterTier + '</li>';
-		output += '<li>Buzzwe beater (to win the game): ' + res.gameScoreData.buzzerBeaterWinner + '</li>';
-		output += '<li>Time-averaged scoring differential: ' + res.gameScoreData.scoringDiffWeightedAvg + '</li>';
-		output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreData.pointsPerf) + '</li>';
-		output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreData.threePtsPerf) + '</li>';
-		output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreData.reboundsPerf) + '</li>';
-		output += '<li>Individual performance - Assists: ' + JSON.stringify(res.gameScoreData.assitsPerf) + '</li>';
-		output += '<li>Individual performance - Steals: ' + JSON.stringify(res.gameScoreData.stealsPerf) + '</li>';
-		output += '<li>Individual performance - Blocks: ' + JSON.stringify(res.gameScoreData.blocksPerf) + '</li></ul>';
+		let output = '<h1>Getting rating for game : ' + req.gameId + '</h1><ul>';
+		let overallScore = res.gameScore + res.indivScore;
+		output += '<h2>Overall Game Score: ' + overallScore + '</h2>';
+		output += '<h4>Game itself: ' + res.gameScore + '</h4>';
+		output += '<h4>Individual Performances: ' + res.indivScore + '</h4>';
+		output += '<li>Top team score: ' + res.gameScoreElements.maxTeamPoints + '</li>';
+		output += '<li>Lead Changes: ' + res.gameScoreElements.leadChanges + '</li>';
+		output += '<li>Late Lead Changes: ' + res.gameScoreElements.lateLeadChanges + '</li>';
+		output += '<li>Ties: ' + res.gameScoreElements.ties + '</li>';
+		output += '<li>Overtimes: ' + res.gameScoreElements.nbOvertimes + '</li>';
+		output += '<li>Buzzer beater (to tie the game): ' + res.gameScoreElements.buzzerBeaterTier + '</li>';
+		output += '<li>Buzzwe beater (to win the game): ' + res.gameScoreElements.buzzerBeaterWinner + '</li>';
+		output += '<li>Time-averaged scoring differential: ' + res.gameScoreElements.scoringDiffWeightedAvg + '</li>';
+		output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
+		output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
+		output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';
+		output += '<li>Individual performance - Assists: ' + JSON.stringify(res.gameScoreElements.assistsPerf) + '</li>';
+		output += '<li>Individual performance - Steals: ' + JSON.stringify(res.gameScoreElements.stealsPerf) + '</li>';
+		output += '<li>Individual performance - Blocks: ' + JSON.stringify(res.gameScoreElements.blocksPerf) + '</li></ul>';
+		output += '<li>Individual performance - Triple Doubles: ' + JSON.stringify(res.gameScoreElements.tripleDoublePerf) + '</li></ul>';
 		res.send(output);
 	} else {
 		res.send(res.errorMsg);

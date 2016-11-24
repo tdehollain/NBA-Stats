@@ -79,14 +79,16 @@ module.exports.calcutateGameScore = function(game) {
 	game.box.homeTeam.forEach(analyseBox);
 
 	function analyseBox(player) {
-		if(player.points >= 35) pointsPerf.push({player: player.player, points: player.points});
-		if(player.threePts.made >= 8) threePtsPerf.push({player: player.player, threePts: player.threePts.made});
-		if(player.rebounds >= 15) reboundsPerf.push({player: player.player, rebounds: player.rebounds});
-		if(player.assists >= 15) assistsPerf.push({player: player.player, assists: player.assists});
-		if(player.steals >= 5) stealsPerf.push({player: player.player, steals: player.steals});
-		if(player.blocks >= 5) blocksPerf.push({player: player.player, blocks: player.blocks});
-		// Tripe-double
-		if(player.points >= 10 && player.rebounds >= 10 && player.assists >= 10) tripleDoublePerf.push({player: player.player, points: player.points, rebounds: player.rebounds, assists: player.assists });
+		if(player.played) {
+			if(player.points >= 35) pointsPerf.push({player: player.player, points: player.points});
+			if(player.threePts.made >= 8) threePtsPerf.push({player: player.player, threePts: player.threePts.made});
+			if(player.rebounds >= 15) reboundsPerf.push({player: player.player, rebounds: player.rebounds});
+			if(player.assists >= 15) assistsPerf.push({player: player.player, assists: player.assists});
+			if(player.steals >= 5) stealsPerf.push({player: player.player, steals: player.steals});
+			if(player.blocks >= 5) blocksPerf.push({player: player.player, blocks: player.blocks});
+			// Tripe-double
+			if(player.points >= 10 && player.rebounds >= 10 && player.assists >= 10) tripleDoublePerf.push({player: player.player, points: player.points, rebounds: player.rebounds, assists: player.assists });
+		}
 	}
 
 	gameScoreElements.pointsPerf = pointsPerf;
@@ -110,13 +112,13 @@ module.exports.calcutateGameScore = function(game) {
 
 	let indivScore = 0;
 	gameScoreElements.pointsPerf.forEach(elem => { indivScore += elem.points - 34; });
-	gameScoreElements.threePtsPerf.forEach(elem => { indivScore += (elem.threePts.made - 7) * 2; });
+	gameScoreElements.threePtsPerf.forEach(elem => { indivScore += (elem.threePts - 7) * 2; });
 	gameScoreElements.reboundsPerf.forEach(elem => { indivScore += elem.rebounds - 14; });
 	gameScoreElements.assistsPerf.forEach(elem => { indivScore += elem.assists - 14; });
 	gameScoreElements.stealsPerf.forEach(elem => { indivScore += (elem.steals - 4) * 2; });
 	gameScoreElements.blocksPerf.forEach(elem => { indivScore += (elem.blocks - 4) * 2; });
 
-	gameScoreElements.tripleDoublePerf.forEach(elem => { indivScore += 5 + (elem.points - 30 + elem.rebounds - 10 + elem.assists - 10) / 2; });
+	gameScoreElements.tripleDoublePerf.forEach(elem => { indivScore += 5 + (elem.points - 30 + elem.rebounds - 10 + elem.assists - 10) /2; });
 
 	return { gameScore: Math.round(gameScore), indivScore: Math.round(indivScore), gameScoreElements: gameScoreElements };
 }

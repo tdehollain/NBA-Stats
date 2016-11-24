@@ -77,9 +77,10 @@ router.param('gameId', (req, res, next, gameId) => {
 		PbpModel.find({ gameId: gameId }, (err, docs) => {
 			if(docs.length === 1) {
 				// Found the game
-				res.gameScore = analytics.calcutateGameScore(docs[0]).gameScore;
-				res.indivScore = analytics.calcutateGameScore(docs[0]).indivScore;
-				res.gameScoreElements = analytics.calcutateGameScore(docs[0]).gameScoreElements;
+				let gameAnalytics = analytics.calcutateGameScore(docs[0]);
+				res.gameScore = gameAnalytics.gameScore;
+				res.indivScore = gameAnalytics.indivScore;
+				res.gameScoreElements = gameAnalytics.gameScoreElements;
 				req.validated = true;
 				next();
 			} else if(docs.length > 1) {

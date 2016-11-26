@@ -3,6 +3,8 @@ const app = express();
 const router = express.Router();
 const port = 8002;
 
+app.set('view engine', 'pug');
+
 
 const PbpModel = require('./db.js').PbpModel;
 const analytics = require('./analytics.js');
@@ -10,7 +12,7 @@ const utils = require('./utils.js');
 
 // Main
 router.get('/', (req, res) => {
-	res.send('nbaStats app is running!');
+	res.render('index');
 });
 
 // Validate date
@@ -49,7 +51,7 @@ router.param('date', (req, res, next, date) => {
 
 
 // Get list of games for a date
-router.get('/games/:date', (req, res) => {
+router.get('/:date', (req, res) => {
 	if(req.validated) {
 		let output = '<h2>Getting games on: ' + req.date + '</h2>';
 		res.gameIds.forEach(elem => {
@@ -99,7 +101,7 @@ router.param('gameId', (req, res, next, gameId) => {
 });
 
 
-router.get('/rating/:gameId', (req, res) => {
+router.get('/game/:gameId', (req, res) => {
 	if(req.validated) {
 		let output = '<h1>Getting rating for game : ' + req.gameId + '</h1><ul>';
 		let overallScore = res.gameScore + res.indivScore;

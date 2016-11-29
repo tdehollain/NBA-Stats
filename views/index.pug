@@ -1,6 +1,60 @@
+mixin game(game)
+  - var score = game.gameScoreData
+  - var scoreElements = game.gameScoreData.gameScoreElements
+  div.game
+    div.gameDescription
+      img(src='/teamLogos/large/' + game.awayTeamShort + '.png')
+      div#overallScore #{score.gameScore + score.indivScore}
+      img(src='/teamLogos/large/' + game.homeTeamShort + '.png')
+    div.gamePerf
+      p.gameScore.hidden Game: #{score.gameScore}
+      p.scoringDiffWeightedAvg Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
+      p.maxPoints.hidden Winning team points: #{scoreElements.maxTeamPoints}
+      p.LeadChanges.hidden Lead Changes: #{scoreElements.leadChanges}
+      p.lateLeadChanges.hidden Late Lead Changes: #{scoreElements.lateLeadChanges}
+      p.ties.hidden Number of ties: #{scoreElements.ties}
+      p.nbOvertimes.hidden Number of overtimes: #{scoreElements.nbOvertimes}
+      p.buzzerBeaterTier.hidden Game-tying Buzzer Beater: #{scoreElements.buzzerBeaterTier}
+      p.buzzerBeaterWinner.hidden Game-Winning Buzzer Beater: #{scoreElements.buzzerBeaterWinner}
+    div.indivPerf
+      p.individualScore.hidden Individual performance: #{score.indivScore}
+      p.indivPoint 
+    a.gameLink(href='/game/' + game.gameId) See game data
+    br
+    br
+    br
+    br
+    br
+    br
+//-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
+//-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
+//-     output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';
+//-     output += '<li>Individual performance - Assists: ' + JSON.stringify(res.gameScoreElements.assistsPerf) + '</li>';
+//-     output += '<li>Individual performance - Steals: ' + JSON.stringify(res.gameScoreElements.stealsPerf) + '</li>';
+//-     output += '<li>Individual performance - Blocks: ' + JSON.stringify(res.gameScoreElements.blocksPerf) + '</li>';
+//-     output += '<li>Individual performance - Triple Doubles: ' + JSON.stringify(res.gameScoreElements.tripleDoublePerf) + '</li></ul>';
+
+
+
+
+
+
 doctype html
 html(lang="en")
   head
     title= 'NBA - What game should I watch?'
+    link(rel='stylesheet', href='/css/style.css')
   body
-    h1 App is running!
+    div#dateNav
+      a.dateLink(href='/' + dates.yesterday) #{dates.yesterday}
+      p.dateLink  - #{dates.today} - 
+      a.dateLink(href='/' + dates.tomorrow) #{dates.tomorrow}
+    p Showing games on date #{dates.today}
+    if games.length > 0
+      p games:
+      ul
+        for game in games
+          li
+            +game(game)
+    else
+      p No games on date #{dates.today}

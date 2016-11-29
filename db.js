@@ -83,4 +83,21 @@ let pbpSchema = new mongoose.Schema({
 	}]
 });
 
-module.exports.PbpModel = mongoose.model('pbp', pbpSchema);
+PbpModel = mongoose.model('pbp', pbpSchema);
+
+module.exports.getGames = function(date, callback) {
+	PbpModel.find({ date: date }, (err, docs) => {
+		if(err) {
+			callback('Unexpected error fetching games on date: ' + date);
+		} else {
+			// let games = docs.map(elem => {
+			// 	return {
+			// 		gameId: elem.gameId,
+			// 		awayTeam: elem.awayTeam,
+			// 		homeTeam: elem.homeTeam
+			// 	};
+			// });
+			callback(null, docs);
+		}
+	});
+}

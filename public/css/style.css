@@ -1,0 +1,48 @@
+.dateLink {
+	display: inline;
+}
+
+ul {
+	list-style: none;
+	width: 750px;
+	margin: 0 auto;
+}
+
+.game {
+	background: #ddd;
+	float: left;
+	width: 350px;
+	margin: 0 10px 20px;
+}
+
+.gameDescription {
+	height: 100px;
+}
+
+.gameDescription img {
+	width: 100px;
+	float: left;
+}
+
+#overallScore {
+	float: left;
+	width: 150px;
+	font-size: 3em;
+	margin-top: 30px;
+	text-align: center;
+}
+
+.gamePerf {
+	float: left;
+	width: 150px;
+}
+
+.indivPerf {
+	float: right;
+	width: 150px;
+}
+
+.gameLink {
+	display: block;
+	clear: both;
+}

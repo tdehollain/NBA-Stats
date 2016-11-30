@@ -67,7 +67,10 @@ function renderDay(res, todayDate) {
 				dates: { 
 					yesterday: yesterday, 
 					today: today, 
-					tomorrow: tomorrow 
+					tomorrow: tomorrow, 
+					yesterdayLong: yesterday.expandDate(), 
+					todayLong: today.expandDate(), 
+					tomorrowLong: tomorrow.expandDate() 
 				}, 
 				games: gamesData 
 			});
@@ -129,7 +132,27 @@ console.log('nbaStats app running on port ' + port);
 
 
 
+String.prototype.expandDate = function() {
+	let year = this.substr(0,4);
+	let month = this.substr(4,2)-1;
+	let day = this.substr(6,2);
 
+	let monthArr = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+	]
+	return day + ' ' + monthArr[month] + ' ' + year;
+}
 
 
 Date.prototype.addDays = function(days) {

@@ -1,18 +1,43 @@
-.dateLink {
-	display: inline;
+body {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-ul {
+div.mainWrapper {
+	margin: 0;
+}
+
+#dateNav {
+	width: 90%;
+	margin: 20px auto;
+	border: 1px solid #000;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.dateLink {
+	/* width: 100px; */
+	text-align: center;
+	margin: 15px 15px;
+}
+
+
+
+ul.gamesWrapper {
 	list-style: none;
-	width: 750px;
-	margin: 0 auto;
+	width: 90%;
+	margin: 20px auto;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .game {
 	background: #ddd;
-	float: left;
-	width: 350px;
+	border-radius: 5px;
 	margin: 0 10px 20px;
+	width: 400px;
 }
 
 .gameDescription {

@@ -165,10 +165,10 @@ function myOwnGetRequest(url, callback) {
 function getGames(content) {
 	const $ = cheerio.load(content);
 	let list = [];
-	$('.shsPreviewLink a').each((i, elem) => {
+	$('.shsRecapLink a').each((i, elem) => {
 		let url = elem.attribs.href;
 		let gameURLs = {};
-		if(url.indexOf('preview') !== -1) {
+		if(url.indexOf('recap') !== -1) {
 			let gameCode = url.slice(url.indexOf('?g=') + 3, url.indexOf('?g=') + 13);
 			gameURLs.box = 'http://msnbchosted.stats.com/nba/boxscore.asp?gamecode=' + gameCode;
 			gameURLs.pbp = 'http://msnbchosted.stats.com/nba/pbp.asp?gamecode=' + gameCode;

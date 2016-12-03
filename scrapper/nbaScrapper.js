@@ -88,12 +88,6 @@ let pbpSchema = new mongoose.Schema({
 
 let PbpModel = mongoose.model('pbp', pbpSchema);
 
-Date.prototype.addDays = function(days) {
-    var dat = new Date(this.valueOf());
-    dat.setDate(dat.getDate() + days);
-    return dat;
-}
-
 /****************************
 *****   HTTP requests   *****
 ****************************/
@@ -103,7 +97,7 @@ let date = process.argv[2];
 if(!date) {
 	let today = new Date();
 	let yesterday = today.addDays(-1);
-	date = yesterday.getFullYear().toString() + (yesterday.getMonth()+1).toString() + yesterday.getDate().toString();
+	date = yesterday.getFullYear().toString() + (yesterday.getMonth()+1).toString().addZero() + yesterday.getDate().toString().addZero();
 }
 const mainURL = 'http://msnbchosted.stats.com/nba/scoreboard.asp?day=' + date;
 const host = 'http://msnbchosted.stats.com';
@@ -333,4 +327,17 @@ function writeGameToDB(gameData, gameURL, callback) {
 			}
 		}
 	});
+}
+
+
+
+
+String.prototype.addZero =  function() {
+	return this.length < 2 ? '0' + this : this;
+}
+
+Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
 }

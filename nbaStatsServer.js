@@ -154,6 +154,10 @@ String.prototype.expandDate = function() {
 	return day + ' ' + monthArr[month] + ' ' + year;
 }
 
+String.prototype.addZero =  function() {
+	return this.length < 2 ? '0' + this : this;
+}
+
 
 Date.prototype.addDays = function(days) {
     let dat = new Date(this.valueOf());
@@ -163,5 +167,5 @@ Date.prototype.addDays = function(days) {
 
 Date.prototype.stringify = function() {
 	let dat = new Date(this.valueOf());
-	return dat.getFullYear().toString() + (dat.getMonth()+1).toString() + dat.getDate().toString();
+	return dat.getFullYear().toString() + (dat.getMonth()+1).toString().addZero() + dat.getDate().toString().addZero();
 }

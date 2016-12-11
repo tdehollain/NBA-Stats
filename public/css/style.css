@@ -1,5 +1,6 @@
 body {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background: #232854;
 }
 
 div.mainWrapper {
@@ -9,16 +10,21 @@ div.mainWrapper {
 #dateNav {
 	width: 90%;
 	margin: 20px auto;
-	border: 1px solid #000;
+	/*border: 1px solid #aaa;*/
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	color: #eee;
 }
 
 .dateLink {
 	/* width: 100px; */
 	text-align: center;
 	margin: 15px 15px;
+}
+
+.dateLink:link, .dateLink:visited {
+	color: #bbb;
 }
 
 
@@ -34,7 +40,7 @@ ul.gamesWrapper {
 }
 
 .game {
-	background: #ddd;
+	background: #eee;
 	border-radius: 5px;
 	margin: 0 10px 20px;
 	padding: 10px 20px;
@@ -61,6 +67,35 @@ img.awayTeamLogo {
 	font-weight: 100;
 	margin-top: 30px;
 	text-align: center;
+}
+
+.plusWrapper {
+}
+
+.plusButton {
+	width: 22px;
+	height: 22px;
+	margin: 5px auto;
+	background: #7986CB;
+	border: 1px solid #eee;
+	border-radius: 17px;
+	cursor: pointer;
+}
+
+.plusButton:hover {
+	background: #3F51B5;
+}
+
+.plusButtonText {
+	color: #eee;
+	font-size: 1.3em;
+	position: relative;
+	top: -4px;
+	left: 5px;
+}
+
+.hidden {
+	display: none;
 }
 
 .gamePerf {

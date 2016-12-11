@@ -5,9 +5,12 @@ mixin game(game)
     img.awayTeamLogo(src='/teamLogos/large/' + game.awayTeamShort + '.png')
     div#overallScore #{score.gameScore + score.indivScore}
     img.homeTeamLogo(src='/teamLogos/large/' + game.homeTeamShort + '.png')
+  div.plusWrapper
+    div.plusButton
+      span.plusButtonText +
   div.gamePerf
     p.gameScore.hidden Game: #{score.gameScore}
-    p.scoringDiffWeightedAvg Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
+    p.scoringDiffWeightedAvg.hidden Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
     p.maxPoints.hidden Winning team points: #{scoreElements.maxTeamPoints}
     p.LeadChanges.hidden Lead Changes: #{scoreElements.leadChanges}
     p.lateLeadChanges.hidden Late Lead Changes: #{scoreElements.lateLeadChanges}
@@ -17,14 +20,8 @@ mixin game(game)
     p.buzzerBeaterWinner.hidden Game-Winning Buzzer Beater: #{scoreElements.buzzerBeaterWinner}
   div.indivPerf
     p.individualScore.hidden Individual performance: #{score.indivScore}
-    p.indivPoint 
+    p.indivPoint.hidden
   a.gameLink(href='/game/' + game.gameId) See game data
-  br
-  br
-  br
-  br
-  br
-  br
 //-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
 //-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
 //-     output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';

@@ -88,6 +88,15 @@ let pbpSchema = new mongoose.Schema({
 
 let PbpModel = mongoose.model('pbp', pbpSchema);
 
+String.prototype.addZero =  function() {
+	return this.length < 2 ? '0' + this : this;
+}
+Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+
 /****************************
 *****   HTTP requests   *****
 ****************************/
@@ -332,12 +341,4 @@ function writeGameToDB(gameData, gameURL, callback) {
 
 
 
-String.prototype.addZero =  function() {
-	return this.length < 2 ? '0' + this : this;
-}
 
-Date.prototype.addDays = function(days) {
-    var dat = new Date(this.valueOf());
-    dat.setDate(dat.getDate() + days);
-    return dat;
-}

@@ -2,9 +2,9 @@ mixin game(game)
   - var score = game.gameScoreData
   - var scoreElements = game.gameScoreData.gameScoreElements
   div.gameDescription
-    img(src='/teamLogos/large/' + game.awayTeamShort + '.png')
+    img.awayTeamLogo(src='/teamLogos/large/' + game.awayTeamShort + '.png')
     div#overallScore #{score.gameScore + score.indivScore}
-    img(src='/teamLogos/large/' + game.homeTeamShort + '.png')
+    img.homeTeamLogo(src='/teamLogos/large/' + game.homeTeamShort + '.png')
   div.gamePerf
     p.gameScore.hidden Game: #{score.gameScore}
     p.scoringDiffWeightedAvg Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}

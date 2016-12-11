@@ -37,7 +37,8 @@ ul.gamesWrapper {
 	background: #ddd;
 	border-radius: 5px;
 	margin: 0 10px 20px;
-	width: 400px;
+	padding: 10px 20px;
+	width: 350px;
 }
 
 .gameDescription {
@@ -49,10 +50,15 @@ ul.gamesWrapper {
 	float: left;
 }
 
+img.awayTeamLogo {
+	margin-left: 10px;
+}
+
 #overallScore {
 	float: left;
-	width: 150px;
+	width: 130px;
 	font-size: 3em;
+	font-weight: 100;
 	margin-top: 30px;
 	text-align: center;
 }
@@ -60,11 +66,13 @@ ul.gamesWrapper {
 .gamePerf {
 	float: left;
 	width: 150px;
+	font-size: 0.9em;
 }
 
 .indivPerf {
 	float: right;
 	width: 150px;
+	font-size: 0.9em;
 }
 
 .gameLink {

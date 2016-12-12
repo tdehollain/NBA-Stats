@@ -8,19 +8,19 @@ mixin game(game)
   div.plusWrapper
     div.plusButton
       span.plusButtonText +
-  div.gamePerf
-    p.gameScore.hidden Game: #{score.gameScore}
-    p.scoringDiffWeightedAvg.hidden Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
-    p.maxPoints.hidden Winning team points: #{scoreElements.maxTeamPoints}
-    p.LeadChanges.hidden Lead Changes: #{scoreElements.leadChanges}
-    p.lateLeadChanges.hidden Late Lead Changes: #{scoreElements.lateLeadChanges}
-    p.ties.hidden Number of ties: #{scoreElements.ties}
-    p.nbOvertimes.hidden Number of overtimes: #{scoreElements.nbOvertimes}
-    p.buzzerBeaterTier.hidden Game-tying Buzzer Beater: #{scoreElements.buzzerBeaterTier}
-    p.buzzerBeaterWinner.hidden Game-Winning Buzzer Beater: #{scoreElements.buzzerBeaterWinner}
-  div.indivPerf
-    p.individualScore.hidden Individual performance: #{score.indivScore}
-    p.indivPoint.hidden
+  div.gamePerf.hidden
+    p.gameScore Game: #{score.gameScore}
+    p.scoringDiffWeightedAvg Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
+    p.maxPoints Winning team points: #{scoreElements.maxTeamPoints}
+    p.LeadChanges Lead Changes: #{scoreElements.leadChanges}
+    p.lateLeadChanges Late Lead Changes: #{scoreElements.lateLeadChanges}
+    p.ties Number of ties: #{scoreElements.ties}
+    p.nbOvertimes Number of overtimes: #{scoreElements.nbOvertimes}
+    p.buzzerBeaterTier Game-tying Buzzer Beater: #{scoreElements.buzzerBeaterTier}
+    p.buzzerBeaterWinner Game-Winning Buzzer Beater: #{scoreElements.buzzerBeaterWinner}
+  div.indivPerf.hidden
+    p.individualScore Individual performance: #{score.indivScore}
+    p.indivPoint
   a.gameLink(href='/game/' + game.gameId) See game data
 //-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
 //-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
@@ -40,6 +40,8 @@ html(lang="en")
   head
     title= 'NBA - What game should I watch?'
     link(rel='stylesheet', href='/css/style.css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src='/scripts/script.js')
   body
     div.mainWrapper
       div#dateNav

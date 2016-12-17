@@ -5,23 +5,46 @@ mixin game(game)
     img.awayTeamLogo(src='/teamLogos/large/' + game.awayTeamShort + '.png')
     div#overallScore #{score.gameScore + score.indivScore}
     img.homeTeamLogo(src='/teamLogos/large/' + game.homeTeamShort + '.png')
+  hr.hidden
+  div.gamePerf.hidden
+    P.scoreNumber #{score.gameScore}
+    p.scoreText Game
+    div.gamePerfDetails
+      hr
+      if scoreElements.nbOvertimes === 1
+        p.nbOvertimes 1 Overtime
+      else if scoreElements.nbOvertimes > 1
+        p.nbOvertimes #{scoreElements.nbOvertimes} Overtimes
+      p.scoringDiffWeightedAvg Score Difference: #{scoreElements.scoringDiffWeightedAvg}
+      p.LeadChanges #{scoreElements.leadChanges} Lead Changes
+      p.lateLeadChanges #{scoreElements.lateLeadChanges} Late Lead Changes
+      if scoreElements.buzzerBeaterTier || scoreElements.buzzerBeaterWinner
+        p.buzzerBeaterTier Buzzer Beater!
+      if scoreElements.maxTeamPoints>130
+        p.maxPoints Winning team points: #{scoreElements.maxTeamPoints}
+  div.indivPerf.hidden
+    p.scoreNumber #{score.indivScore}
+    p.scoreText Individual
+    div.indivPerfDetails
+      hr
+      each val in scoreElements.pointsPerf
+        p.indivPoint= val.player + ": " + val.points + ' points'
+      each val in scoreElements.threePtsPerf
+        p.indivThreePts= val.player + ': ' + val.threePts + " made 3 pts"
+      each val in scoreElements.reboundsPerf
+        p.indiv= val.player + ': ' + val.rebounds + " rebounds"
+      each val in scoreElements.assistsPerf
+        p.indivPoint= val.player + ": " + val.assists + ' assists'
+      each val in scoreElements.stealsPerf
+        p.indivPoint= val.player + ": " + val.steals + ' steals'
+      each val in scoreElements.blocksPerf
+        p.indivPoint= val.player + ": " + val.blocks + ' blocks'
+      each val in scoreElements.tripleDoublePerf
+        p.indivPoint= val.player + ': triple double'
   div.plusWrapper
     div.plusButton
       span.plusButtonText +
-  div.gamePerf.hidden
-    p.gameScore Game: #{score.gameScore}
-    p.scoringDiffWeightedAvg Scoring Difference (time-averaged): #{scoreElements.scoringDiffWeightedAvg}
-    p.maxPoints Winning team points: #{scoreElements.maxTeamPoints}
-    p.LeadChanges Lead Changes: #{scoreElements.leadChanges}
-    p.lateLeadChanges Late Lead Changes: #{scoreElements.lateLeadChanges}
-    p.ties Number of ties: #{scoreElements.ties}
-    p.nbOvertimes Number of overtimes: #{scoreElements.nbOvertimes}
-    p.buzzerBeaterTier Game-tying Buzzer Beater: #{scoreElements.buzzerBeaterTier}
-    p.buzzerBeaterWinner Game-Winning Buzzer Beater: #{scoreElements.buzzerBeaterWinner}
-  div.indivPerf.hidden
-    p.individualScore Individual performance: #{score.indivScore}
-    p.indivPoint
-  a.gameLink(href='/game/' + game.gameId) See game data
+  a.gameLink.hidden(href='/game/' + game.gameId) See game data
 //-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
 //-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
 //-     output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';

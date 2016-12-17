@@ -49,6 +49,8 @@ ul.gamesWrapper {
 
 .gameDescription {
 	height: 100px;
+	margin-left: 10px;
+	margin-top: 5px;
 }
 
 .gameDescription img {
@@ -56,20 +58,71 @@ ul.gamesWrapper {
 	float: left;
 }
 
-img.awayTeamLogo {
-	margin-left: 10px;
-}
-
 #overallScore {
+	/*background: #232854;
+	color: #eee;*/
 	float: left;
-	width: 130px;
+	/*width: 110px;*/
 	font-size: 3em;
 	font-weight: 100;
-	margin-top: 30px;
+	margin: 20px 28px 0;
+	padding: 10px;
 	text-align: center;
 }
 
+
+
+/************************
+*****   Game Perf   *****
+************************/
+
+.gamePerf {
+	float: left;
+	width: 150px;
+	font-size: 0.9em;
+}
+
+p.scoreNumber {
+	text-align: center;
+	font-size: 2em;
+	margin: 0;
+}
+
+p.scoreText {
+	text-align: center;
+	font-size: 1.1em;
+	margin: 0;
+}
+
+.gamePerfDetails p {
+	margin: 3px 0;
+	font-size: 1em;
+}
+
+
+/*************************
+*****   Indiv Perf   *****
+*************************/
+
+.indivPerf {
+	float: right;
+	width: 150px;
+	font-size: 0.9em;
+}
+
+.indivPerfDetails p {
+	margin: 3px 0;
+	font-size: 1em;
+}
+
+
+/**************************
+*****   Plus button   *****
+**************************/
+
 .plusWrapper {
+	display: block;
+	clear: both;
 }
 
 .plusButton {
@@ -81,6 +134,7 @@ img.awayTeamLogo {
 	border-radius: 17px;
 	cursor: pointer;
 }
+
 
 .plusButton:hover {
 	background: #3F51B5;
@@ -94,23 +148,18 @@ img.awayTeamLogo {
 	left: 5px;
 }
 
-.hidden {
-	display: none;
-}
 
-.gamePerf {
-	float: left;
-	width: 150px;
-	font-size: 0.9em;
-}
-
-.indivPerf {
-	float: right;
-	width: 150px;
-	font-size: 0.9em;
-}
 
 .gameLink {
 	display: block;
 	clear: both;
+}
+
+
+
+
+
+
+.hidden {
+	display: none;
 }

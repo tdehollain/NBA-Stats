@@ -102,7 +102,7 @@ module.exports.calcutateGameScore = function(game) {
 
 	// Calculating game score
 	let gameScore = 0;
-	gameScore += gameScoreElements.maxTeamPoints > 120 ? (gameScoreElements.maxTeamPoints - 120)/2 : 0;
+	gameScore += gameScoreElements.maxTeamPoints > 130 ? (gameScoreElements.maxTeamPoints - 120)/2 : 0;
 	gameScore += gameScoreElements.buzzerBeaterTier ? 5 : 0;
 	gameScore += gameScoreElements.buzzerBeaterWinner ? 10 : 0;
 	gameScore += gameScoreElements.lateLeadChanges ? 5 : 0;

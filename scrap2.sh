@@ -1,4 +1,3 @@
-node scrapper/nbaScrapper.js 20161124
 node scrapper/nbaScrapper.js 20161125
 node scrapper/nbaScrapper.js 20161126
 node scrapper/nbaScrapper.js 20161127

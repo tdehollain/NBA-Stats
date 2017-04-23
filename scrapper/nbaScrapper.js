@@ -3,7 +3,8 @@ const cheerio=require('cheerio');
 const mongoose = require('mongoose');
 
 // MongoDB Connection & Schema
-mongoose.connect('mongodb://localhost:9001/nba', (err) => {
+mongoose.connect('mongodb://localhost:27017/nba', (err) => {
+// mongoose.connect('mongodb://localhost:9001/nba', (err) => {
 	if(err) {
 		console.log('Error connecting to MongoDB: ' + err);
 	} else {

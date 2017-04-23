@@ -75,13 +75,9 @@ html(lang="en")
   body
     div.mainWrapper
       div.container(id='dateNav')
-        div.row
-          div.col
-            a.dateLink(href='/' + dates.yesterday) #{dates.yesterdayLong}
-          div.col
-            p.dateLink #{dates.todayLong}
-          div.col
-            a.dateLink(href='/' + dates.tomorrow) #{dates.tomorrowLong}
+        a.dateLink(href='/' + dates.yesterday) #{dates.yesterdayLong}
+        p.dateLink #{dates.todayLong}
+        a.dateLink(href='/' + dates.tomorrow) #{dates.tomorrowLong}
       if games.length > 0
         ul.gamesWrapper
           for game in games

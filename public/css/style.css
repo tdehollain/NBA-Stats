@@ -8,18 +8,18 @@ div.mainWrapper {
 }
 
 #dateNav {
-	width: 500px;
-	/*margin: 20px auto;*/
+	width: 450px;
+	margin: 20px auto;
 	/*border: 1px solid #aaa;*/
 	justify-content: center;
 	color: #eee;
 }
 
 .dateLink {
-	/*width: 150px; 
+	width: 150px; 
 	text-align: center;
-	margin: 15px 15px;
-	display: inline;*/
+	margin: 15px 0;
+	display: inline-block;
 }
 
 .dateLink:link, .dateLink:visited {
@@ -33,10 +33,11 @@ ul.gamesWrapper {
 	width: 90%;
 	margin: 20px auto;
 	padding: 0;
-	justify-content: space-around;
 }
 
 .game {
+	display: inline-block;
+	vertical-align: top;
 	background: #eee;
 	border-radius: 5px;
 	margin: 0 10px 20px;

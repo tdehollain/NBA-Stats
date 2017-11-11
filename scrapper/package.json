@@ -4,11 +4,11 @@
   "description": "get play-by-play data of games on a given date (parameterizable) and writes it to a DB",
   "main": "nbsScrapper.js",
   "dependencies": {
-  	"cheerio": "0.22.0",
-  	"mongoose": "4.6.6"
+    "cheerio": "0.22.0",
+    "mongoose": "4.6.6"
   },
   "scripts": {
-  	"start": "node nbaScrapper.js"
+    "start": "node nbaScrapper.js"
   },
   "author": "Thibaut de Hollain",
   "license": "ISC"

@@ -41,10 +41,11 @@ mixin game(game)
         p.indivPoint= val.player + ": " + val.blocks + ' blocks'
       each val in scoreElements.tripleDoublePerf
         p.indivPoint= val.player + ': triple double'
-  div.plusWrapper
-    div.plusButton
-      span.plusButtonText +
-  a.gameLink.hidden(href='/game/' + game.gameId) See game data
+  div.clear
+  div.buttonsWrapper
+    button.detailsButton.btn Show details
+    button.gameStatsButto.btn Game Dashboard
+  a.gameLinkr.hidden(href='/game/' + game.gameId) See game data
 //-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
 //-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
 //-     output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';
@@ -65,23 +66,29 @@ html(lang="en")
     meta(name="google-site-verification" content="g49XxGpYpDLNZ6sBbipT__OZ3zmOKrTDIWgXkJ6oD94")
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    link(rel='stylesheet', href='<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous")
     link(rel='stylesheet', href='/css/style.css')
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
-    script(src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous")
+    script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous")
     script(src='/scripts/script.js')
   body
+    nav.navbar.navbar-dark.navbar-expand-lg(style='background-color: #303F9F')
+      a.navbar-brand(href='/') NBA Stats
+      div.navbar-nav
+        a.nav-item.nav-link.active(href='/') What game should I watch
+        a.nav-item.nav-link(href='/seasonTracker') Season Tracker
     div.mainWrapper
       div.container(id='dateNav')
-        a.dateLink(href='/' + dates.yesterday) #{dates.yesterdayLong}
-        p.dateLink #{dates.todayLong}
-        a.dateLink(href='/' + dates.tomorrow) #{dates.tomorrowLong}
+        div.row
+          a.dateLink.col-sm(href='/' + dates.yesterday) #{dates.yesterdayLong}
+          p.dateLink.col-sm #{dates.todayLong}
+          a.dateLink.col-sm(href='/' + dates.tomorrow) #{dates.tomorrowLong}
       if games.length > 0
-        ul.gamesWrapper
+        ul.gamesWrapper.container
           for game in games
             li.game
               +game(game)
       else
-        p No games on date #{dates.today}
+        div.container
+          p.noGames No games on date #{dates.today}

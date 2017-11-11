@@ -1,36 +1,52 @@
 body {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	background: #232854;
+	background: #3F51B5;
 }
+
+.container {
+	max-width: 1400px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+
+/************************
+*****   Main view   *****
+************************/
 
 div.mainWrapper {
 	margin: 0;
 }
 
 #dateNav {
-	width: 450px;
-	margin: 20px auto;
-	/*border: 1px solid #aaa;*/
+	width: 600px;
 	justify-content: center;
 	color: #eee;
 }
 
+#dateNav.row {
+	margin: 20px auto;
+}
+
 .dateLink {
-	width: 150px; 
+	width: 200px; 
 	text-align: center;
 	margin: 15px 0;
 	display: inline-block;
 }
 
 .dateLink:link, .dateLink:visited {
-	color: #bbb;
+	color: #C5CAE9;
 }
 
 
 
 ul.gamesWrapper {
 	list-style: none;
-	width: 90%;
+	width: 1200px;
 	margin: 20px auto;
 	padding: 0;
 }
@@ -42,7 +58,7 @@ ul.gamesWrapper {
 	border-radius: 5px;
 	margin: 0 10px 20px;
 	padding: 10px 20px;
-	width: 350px;
+	width: 380px;
 }
 
 .gameDescription {
@@ -118,9 +134,22 @@ p.scoreText {
 *****   Plus button   *****
 **************************/
 
-.plusWrapper {
-	display: block;
+.buttonsWrapper {
+	margin: 15px 0 0;
+	display: flex;
+	justify-content: space-around;
 	clear: both;
+}
+
+.buttonsWrapper button {
+	background: #FF5722;
+	color: white;
+	font-weight: 200;
+	cursor: pointer;
+}
+
+.buttonsWrapper button:hover {
+	background: rgb(180, 61, 25);
 }
 
 .plusButton {
@@ -155,7 +184,10 @@ p.scoreText {
 
 
 
-
+p.noGames {
+	color: #222;
+	font-weight: bold;
+}
 
 
 .hidden {

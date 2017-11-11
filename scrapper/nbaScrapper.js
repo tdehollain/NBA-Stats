@@ -130,23 +130,29 @@ myOwnGetRequest(mainURL, (err, rawData) => {
 	}
 	const gameList = getGames(rawData);
 	let i=0;
-	gameList.forEach(gameURLs => {
-		getPlayByPlay(gameURLs.pbp, (err2, gameData) => {
-			console.log('Getting PBP for: ' + gameURLs.pbp);
-			if(err2) {
-				console.log("Error getting data for game URL: " + gameURLs.pbp);
-			} else {
-				getBox(gameURLs.box, (err3, gameBox) => {
-					gameData.box = gameBox;
-					writeGameToDB(gameData, gameURLs.pbp, (err3) => {
-						i++;
-						if(err3) console.log(err3); else console.log('Game saved to DB: ' + i + ': ' + gameURLs.pbp);
-						if(i===gameList.length) mongoose.connection.close();
+	if(gameList.length) {
+		gameList.forEach(gameURLs => {
+			getPlayByPlay(gameURLs.pbp, (err2, gameData) => {
+				console.log('Getting PBP for: ' + gameURLs.pbp);
+				if(err2) {
+					console.log("Error getting data for game URL: " + gameURLs.pbp);
+				} else {
+					getBox(gameURLs.box, (err3, gameBox) => {
+						gameData.box = gameBox;
+						writeGameToDB(gameData, gameURLs.pbp, (err3) => {
+							i++;
+							if(err3) console.log(err3); else console.log('Game saved to DB: ' + i + ': ' + gameURLs.pbp);
+							if(i===gameList.length) mongoose.connection.close();
+						});
 					});
-				});
-			}
+				}
+			});
 		});
-	});
+	} else {
+		console.log('No game on date: ' + date);
+		mongoose.connection.close();
+		process.exit();
+	}
 });
 
 

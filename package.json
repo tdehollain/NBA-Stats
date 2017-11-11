@@ -1,6 +1,7 @@
 {
 	"name": "NBA-Stats",
 	"main": "server.js",
+	"version": "0.5.0",
 	"dependencies": {
 		"express": "4.14.0",
 		"mongoose": "4.6.6",

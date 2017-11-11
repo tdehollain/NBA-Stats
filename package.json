@@ -1,9 +1,9 @@
 {
-	"name": "nbaStats",
+	"name": "NBA-Stats",
 	"main": "server.js",
 	"dependencies": {
-		"express":  "4.14.0",
- 	 	"mongoose": "4.6.6",
- 	 	"pug": "2.0.0-beta6"
+		"express": "4.14.0",
+		"mongoose": "4.6.6",
+		"pug": "2.0.0-beta6"
 	}
 }

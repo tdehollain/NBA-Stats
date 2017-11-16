@@ -1,6 +1,25 @@
 module.exports.calcutateGameScore = function(game) {
 	// Count ties and lead changes, overtimes
+
 	let gameScoreElements = {};
+	let gameBox = {
+		awayTeam: {
+			turnovers: 0,
+			rebounds: 0,
+			fg: 0,
+			threePts: 0,
+			ft: 0,
+			assists: 0
+		},
+		homeTeam: {
+			turnovers: 0,
+			rebounds: 0,
+			fg: 0,
+			threePts: 0,
+			ft: 0,
+			assists: 0
+		}
+	};
 
 	let nbTies = 0;
 	let oldAwayTeamScore = 0;
@@ -42,14 +61,87 @@ module.exports.calcutateGameScore = function(game) {
 				let timeDiff = play.elapsedTimeSeconds - oldElapsedTimeSeconds;
 
 				scoringDiffTotal += Math.abs(scoringDiff)*timeDiff;
-				// console.log(`scores: ${play.awayTeamScore} - ${play.homeTeamScore}, scoringDiff: ${scoringDiff}, time difference: ${timeDiff}`);
-
+				
 				oldLeader = leader;
 				oldAwayTeamScore = play.awayTeamScore;
 				oldHomeTeamScore = play.homeTeamScore;
 				oldElapsedTimeSeconds = play.elapsedTimeSeconds;
 			}
+
 		}
+
+		// Boxscore
+		// let des = play.description.toLowerCase();
+		// let away = teamsDictionary[game.awayTeam] === play.team;
+		// console.log(away);
+
+		// if(des.indexOf("turnover") !== -1) { // Turnover
+		// 	if(away) {
+		// 		gameBox.awayTeam.turnovers++;
+		// 	} else {
+		// 		gameBox.homeTeam.turnovers++;
+		// 	}
+		// } else if(des.indexOf("rebound") !== -1) { // Rebound
+		// 	if(away) {
+		// 		gameBox.awayTeam.rebounds++;
+		// 	} else {
+		// 		gameBox.homeTeam.rebounds++;
+		// 	}
+		// } else if(des.indexOf("shot") !== -1) { // Field Goal
+		// 	if(des.indexOf("made") !== -1) { // Made
+		// 		if(away) {
+		// 			gameBox.awayTeam.fg.made++;
+		// 			gameBox.awayTeam.fg.att++;
+		// 			if(des.indexOf("3pt shot") !== -1) { // 3pt shot
+		// 				gameBox.awayTeam.threePts.made++;
+		// 				gameBox.awayTeam.threePts.att++;
+		// 			}
+		// 		} else {
+		// 			gameBox.homeTeam.fg.made++;
+		// 			gameBox.homeTeam.fg.att++;
+		// 			if(des.indexOf("3pt shot") !== -1) { // 3pt shot
+		// 				gameBox.homeTeam.threePts.made++;
+		// 				gameBox.homeTeam.threePts.att++;
+		// 			}
+		// 		}
+		// 	} else {												// Missed
+		// 		if(away) {
+		// 			gameBox.awayTeam.fg.att++;
+		// 			if(des.indexOf("3pt shot") !== -1) { // 3pt shot
+		// 				gameBox.awayTeam.threePts.att++;
+		// 			}
+		// 		} else {
+		// 			gameBox.homeTeam.fg.att++;
+		// 			if(des.indexOf("3pt shot") !== -1) { // 3pt shot
+		// 				gameBox.homeTeam.threePts.att++;
+		// 			}
+		// 		}
+		// 	}
+		// } else if(des.indexOf("free throw") !== -1) { // Free Throw (Technical and "And One" count just a normal free throw)
+		// 	// if(des.indexOf("1 of 1") !== -1 || des.indexOf("technical") !== -1) { // Technical or "And One" Free Throw
+		// 	if(des.indexOf("missed") === -1) { // Made
+		// 		if(away) {
+		// 			gameBox.awayTeam.ft.made++;
+		// 			gameBox.awayTeam.ft.att++;
+		// 		} else {
+		// 			gameBox.homeTeam.ft.made++;
+		// 			gameBox.homeTeam.ft.att++;
+		// 		}
+		// 	} else {													// Missed
+		// 		if(away) {
+		// 			gameBox.awayTeam.ft.att++;
+		// 		} else {
+		// 			gameBox.homeTeam.ft.att++;
+		// 		}
+		// 	}
+		// }
+		// if(des.indexOf("assist") !== -1) { // Assist
+		// 	if(away) {
+		// 		gameBox.awayTeam.assists++;
+		// 	} else {
+		// 		gameBox.homeTeam.assists++;
+		// 	}
+		// }
 
 		// Count number of overtimes
 		if(play.quarter > 4) nbOvertimes = play.quarter - 4;
@@ -120,5 +212,5 @@ module.exports.calcutateGameScore = function(game) {
 
 	gameScoreElements.tripleDoublePerf.forEach(elem => { indivScore += 5 + (elem.points - 30 + elem.rebounds - 10 + elem.assists - 10) /2; });
 
-	return { gameScore: Math.round(gameScore), indivScore: Math.round(indivScore), gameScoreElements: gameScoreElements };
+	return { gameScore: Math.round(gameScore), indivScore: Math.round(indivScore), gameScoreElements: gameScoreElements, gameBox: gameBox };
 }

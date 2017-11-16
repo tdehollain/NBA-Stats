@@ -98,7 +98,9 @@ router.param('gameId', (req, res, next, gameId) => {
 				res.gameScore = gameAnalytics.gameScore;
 				res.indivScore = gameAnalytics.indivScore;
 				res.gameScoreElements = gameAnalytics.gameScoreElements;
+				res.gameBox = gameAnalytics.gameBox;
 				req.validated = true;
+				req.gameData = docs[0];
 				next();
 			} else if(docs.length > 1) {
 				// Unexpected Error: more than one game found
@@ -118,7 +120,8 @@ router.param('gameId', (req, res, next, gameId) => {
 
 router.get('/game/:gameId', (req, res) => {
 	if(req.validated) {
-		res.send('Under construction');
+		res.render('gameDashboard', { gameData: req.gameData });
+		// res.send(req.gameData);
 	} else {
 		res.send(res.errorMsg);
 	}

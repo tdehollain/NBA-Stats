@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+    head
+        title= 'NBA Stats'
+        meta(name="google-site-verification" content="g49XxGpYpDLNZ6sBbipT__OZ3zmOKrTDIWgXkJ6oD94")
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous")
+        link(rel="stylesheet", href="/lib/c3.min.css")
+        link(rel='stylesheet', href='/css/style-gameDashboard.css')
+        script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous")
+        script(src="/lib/d3.min.js", charset="utf-8")
+        script(src="/lib/c3.min.js")
+    body
+        nav.navbar.navbar-dark.navbar-expand-lg(style='background-color: #303F9F')
+            a.navbar-brand(href='/') NBA Stats
+            div.navbar-nav
+                a.nav-item.nav-link.active(href='/') What game should I watch
+                a.nav-item.nav-link(href='/seasonTracker') Season Tracker
+        div.mainWrapper.container
+            section#scoringProfile
+                div#profileOptions
+                    //- button#maxDiffButton.active Maximum Lead
+                    //- button#notableRunsButton.active Notable runs
+                div#scoringProfileChart
+            section#charts.hidden
+                h3 Scoring Factors
+                hr
+                div.chartWrapper
+                    h3 Field Goal %
+                    div.horLine2
+                    div#fg.chartPlaceholder
+                div.chartWrapper
+                    h3 Turnovers
+                    div.horLine2
+                    div#turnovers.chartPlaceholder
+                div.chartWrapper
+                    h3 Rebounds
+                    div.horLine2
+                    div#rebounds.chartPlaceholder
+                div.chartWrapper
+                    h3 Free Throws
+                    div.horLine2
+                    div#ft.chartPlaceholder
+                div.chartWrapper
+                    h3 3pt Shots
+                    div.horLine2
+                    div#threePts.chartPlaceholder
+                div.chartWrapper
+                    h3 Assists
+                    div.horLine2
+                    div#assists.chartPlaceholder
+        script let gameData =!{JSON.stringify(gameData)};  
+        script(src='/scripts/gameDashboard.js')

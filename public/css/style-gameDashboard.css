@@ -1,0 +1,35 @@
+body {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	/* background: #3F51B5; */
+}
+
+.container {
+	max-width: 1400px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+
+/************************
+*****   Main view   *****
+************************/
+
+#scoringProfile {
+    width: 1000px;
+    margin: 20px auto;
+}
+/* 
+#scoringProfileChart {
+    width: 1000px;
+} */
+
+#scoringProfileChart .c3-line-awayTeam {
+    stroke-width: 2;
+}
+
+#scoringProfileChart .c3-line-homeTeam {
+    stroke-width: 2;
+}

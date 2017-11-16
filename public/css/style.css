@@ -141,14 +141,15 @@ p.scoreText {
 	clear: both;
 }
 
-.buttonsWrapper button {
+.buttonsWrapper button, .buttonsWrapper a {
 	background: #FF5722;
 	color: white;
 	font-weight: 200;
 	cursor: pointer;
+	font-size: 0.9rem;
 }
 
-.buttonsWrapper button:hover {
+.buttonsWrapper button:hover, .buttonsWrapper a:hover {
 	background: rgb(180, 61, 25);
 }
 

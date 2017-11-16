@@ -44,8 +44,7 @@ mixin game(game)
   div.clear
   div.buttonsWrapper
     button.detailsButton.btn Show details
-    button.gameStatsButto.btn Game Dashboard
-  a.gameLinkr.hidden(href='/game/' + game.gameId) See game data
+    a.gameStatsButton.btn(href='/game/' + game.gameId) Game Dashboard
 //-     output += '<li>Individual performance - points: ' + JSON.stringify(res.gameScoreElements.pointsPerf) + '</li>';
 //-     output += '<li>Individual performance - 3 Points made: ' + JSON.stringify(res.gameScoreElements.threePtsPerf) + '</li>';
 //-     output += '<li>Individual performance - Rebounds: ' + JSON.stringify(res.gameScoreElements.reboundsPerf) + '</li>';
